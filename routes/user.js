@@ -1,12 +1,11 @@
 const {Router} = require('express');
-<<<<<<< HEAD
 const userRouter = Router();
 const{userModel, purchaseModel} = require('../db.js')
 const bcrypt = require('bcrypt');
 const {z} = require('zod');
 const JWT = require('jsonwebtoken')
 const  { JWT_USER_PASSWORD } = require("../config");
-
+const {userMiddleware} = require('../middleware/user.js')
     userRouter.post('/sign-up', async function (req, res) {
             const requireBody = z.object({
                 email: z.string().min(3).max(100).email(),
@@ -42,12 +41,6 @@ const  { JWT_USER_PASSWORD } = require("../config");
                     message: "your signedUp"
                 })
             }
-=======
-const {userModel, purchaseModel, courseModel} = require('../db.js')
-const userRouter = Router()
-
-    userRouter.post('/sign-up', async function (req, res) {
->>>>>>> 862ad85a096e4ed117aa91cb326e86c14b29b953
     })
 
     userRouter.post('/sign-in', async function (req, res) {
@@ -71,8 +64,14 @@ const userRouter = Router()
     });
 
 
-    userRouter.get('/purchases', function (req, res) {
-
+    userRouter.get('/purchases', userMiddleware, async function (req, res) {
+        const userId = req.body.userId;
+        const purchases = await purchaseModel.find({
+            userId,
+        })
+        res.json({
+            purchases
+        })
     })
 
 
