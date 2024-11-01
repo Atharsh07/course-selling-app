@@ -1,4 +1,5 @@
 const {Router} = require('express');
+<<<<<<< HEAD
 const userRouter = Router();
 const{userModel, purchaseModel} = require('../db.js')
 const bcrypt = require('bcrypt');
@@ -41,6 +42,12 @@ const  { JWT_USER_PASSWORD } = require("../config");
                     message: "your signedUp"
                 })
             }
+=======
+const {userModel, purchaseModel, courseModel} = require('../db.js')
+const userRouter = Router()
+
+    userRouter.post('/sign-up', async function (req, res) {
+>>>>>>> 862ad85a096e4ed117aa91cb326e86c14b29b953
     })
 
     userRouter.post('/sign-in', async function (req, res) {

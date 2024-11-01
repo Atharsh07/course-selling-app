@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const adminRouter = Router();
 const {adminModel} = require('../db.js')
+<<<<<<< HEAD
 const {z} = require('zod')
 const JWT = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
@@ -40,6 +41,11 @@ const { JWT_ADMIN_PASSWORD } = require('../config.js');
                     message: "your signedUp as admin"
                 })
             }
+=======
+
+    adminRouter.post('/sign-up', function (req, res) {
+        
+>>>>>>> 862ad85a096e4ed117aa91cb326e86c14b29b953
     })
 
     adminRouter.post('/sign-in', async function (req, res) {
